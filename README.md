@@ -1092,15 +1092,16 @@ export CC_DESTINATION=/path/to/your/project  # New or existing project folder
 **Example**: `/create-sprint "build user authentication system"`
 **When NOT to use**: During active sprint (use `/switch-sprint` instead)
 
-### `/list-sprints` - SPRINT STATUS COMMAND
-**When to use**: To see all sprints and their current status
-**Why use it**: Provides overview of development progress and sprint history
+### `/listsprints` - SPRINT DASHBOARD & MANAGEMENT COMMAND
+**When to use**: To see all sprints and their current status with visual dashboard
+**Why use it**: Provides comprehensive sprint management overview with status indicators and quick actions
 **What it does**:
-- Shows active sprint with detailed status
-- Lists completed and abandoned sprints
+- Shows active sprint with detailed status and lifecycle indicators
+- Lists completed and abandoned sprints in reverse chronological order
 - Displays global context synchronization status
-- Provides interactive sprint selection guidance
-**Example**: `/list-sprints`
+- Provides interactive sprint selection and management options
+- Visual dashboard with color coding and status indicators
+**Example**: `/listsprints`
 **When NOT to use**: When you need to take action (use specific commands instead)
 
 ### `/switch-sprint` - SPRINT CONTEXT SWITCHING COMMAND
