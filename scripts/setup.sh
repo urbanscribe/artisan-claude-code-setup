@@ -212,6 +212,9 @@ fi
 log_info "Step 7: Copying security settings..."
 if [ -f "$SETUP_DIR/.claude/settings.json" ]; then
     cp "$SETUP_DIR/.claude/settings.json" "$CC_DESTINATION/.claude/"
+    # Replace placeholders with actual paths
+    sed -i.bak "s|{{CC_DESTINATION}}|$CC_DESTINATION|g" "$CC_DESTINATION/.claude/settings.json"
+    rm "$CC_DESTINATION/.claude/settings.json.bak" 2>/dev/null || true
     log_success "Security settings copied"
 else
     log_error "settings.json not found"
