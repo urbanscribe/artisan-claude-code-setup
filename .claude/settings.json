@@ -18,9 +18,7 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": {
-          "tools": ["BashTool"]
-        },
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -31,9 +29,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": {
-          "tools": ["*"]
-        },
+        "matcher": "*",
         "hooks": [
           {
             "type": "command",
