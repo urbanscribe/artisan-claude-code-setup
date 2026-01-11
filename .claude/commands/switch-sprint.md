@@ -106,7 +106,7 @@ Available sprints:
 ✅ 2026-01-08_plan_003_api_endpoints (completed)
 ⏸️ 2026-01-06_plan_001_initial_setup (abandoned)
 
-Use: /list-sprints to see all available sprints
+Use: /listsprints to see all available sprints
 Use: /switch-sprint [valid_id] to switch context
 ```
 
@@ -148,7 +148,7 @@ Choose option (1-3):
 
 ### Command System Integration
 **Workflow Continuity**:
-- **Status Updates**: /list-sprints reflects switch immediately
+- **Status Updates**: /listsprints reflects switch immediately
 - **Context Awareness**: All commands operate within new sprint boundaries
 - **Progress Continuity**: Phase and iteration tracking resumes correctly
 - **Artifact Management**: Temp directory switches to new sprint location
