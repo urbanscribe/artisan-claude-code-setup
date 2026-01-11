@@ -1187,7 +1187,7 @@ Planning → Initial Code → Ralph Loop → Perfection
 - **Progress**: Tracked in `/temp/progress.txt`
 
 #### Human Control Points
-- **Iteration Limits**: Max 50 cycles, human intervention at 40
+- **Intelligent Monitoring**: Assessment checkpoints at 10, 25, 40, 60+ iterations with progress analysis
 - **Quality Gates**: Must pass confidence scoring (≥80)
 - **Escalation**: Human approval for complex issues
 - **Memory Management**: `/clear` commands prevent context drift
@@ -1616,7 +1616,7 @@ Planning → Initial Code → Ralph Loop → Perfection
 - **Progress**: Tracked in `/temp/progress.txt`
 
 #### Human Control Points
-- **Iteration Limits**: Max 50 cycles, human intervention at 40
+- **Intelligent Monitoring**: Assessment checkpoints at 10, 25, 40, 60+ iterations with progress analysis
 - **Quality Gates**: Must pass confidence scoring (≥80)
 - **Escalation**: Human approval for complex issues
 - **Memory Management**: `/clear` commands prevent context drift

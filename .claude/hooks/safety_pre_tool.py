@@ -681,22 +681,8 @@ class SafetyValidationHook:
                         'assessment_checkpoint': current_iteration
                     }
 
-            # Legacy escalation support (for backward compatibility)
-            max_iterations = active_sprint.get('max_iterations', 100)  # Very high default
-            if current_iteration >= max_iterations:
-                if '--escalate-iterations' in command_input:
-                    return {
-                        'allowed': True,
-                        'reason': 'Legacy escalation approved - proceeding with manual override',
-                        'warning': f'Iteration {current_iteration} - using legacy escalation (consider /deepselfassessment for better analysis)'
-                    }
-
-                return {
-                    'allowed': False,
-                    'reason': f'🚫 LEGACY LIMIT EXCEEDED: Maximum iterations ({max_iterations}) reached. Use --escalate-iterations to override or run /deepselfassessment for intelligent analysis.',
-                    'severity': 'high',
-                    'suggestion': 'Modern approach: Use /deepselfassessment for progress analysis instead of hard limits'
-                }
+            # No hard iteration limits - intelligent monitoring only
+            # Assessment checkpoints provide oversight without blocking progress
 
             # Validate promise tags in recent context (this would be enhanced with conversation context)
             # For now, allow operations but log the requirement

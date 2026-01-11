@@ -85,7 +85,7 @@ MANIFESTO APPROVAL: ____________________ Date: _____________
       "locked_files": ["src/auth.py", "tests/test_auth.py", "docs/auth.md"],
       "created": "2026-01-10T14:30:00Z",
       "iteration": 0,
-      "max_iterations": 10
+      "max_iterations": 1000
     }
   }
 }
