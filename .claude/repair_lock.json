@@ -1,0 +1,7 @@
+{
+  "repair_active": false,
+  "allowed_paths": [],
+  "session_id": "",
+  "created_timestamp": "",
+  "description": "HARD repair scope lock - only BOSS can set allowed paths"
+}
