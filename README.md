@@ -93,7 +93,8 @@ claude
 - **Professional Workflow Enforcement** (structured development, human approval gates, sprint management)
 
 ### 🚀 Professional Development Commands
-- **`/implement "feature"`** - Build complete features with full AI team coordination
+- **`/implement [--permissive]`** - Build complete features with full AI team coordination
+- **`/deepselfassessment`** - Intelligent sprint progress analysis & intervention
 - **`/startprojectplanning`** - Guided project foundation establishment
 - **`/startsprintplanning`** - 5-phase planning with 10 quality gates
 - **`/startnewsprint [name]`** - Create execution boundaries with manifestos
