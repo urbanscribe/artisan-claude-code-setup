@@ -22,7 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/safety_pre_tool_wrapper.sh"
+            "command": "bash -c 'CLAUDE_DIR=\"$(while [ ! -d .claude ] && [ \"$PWD\" != / ]; do cd ..; done; if [ -d .claude ]; then echo \"$PWD/.claude\"; fi)\"; if [ -n \"$CLAUDE_DIR\" ]; then \"$CLAUDE_DIR/hooks/safety_pre_tool_wrapper.sh\"; fi'"
           }
         ]
       }
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/validation_post_tool_wrapper.sh"
+            "command": "bash -c 'CLAUDE_DIR=\"$(while [ ! -d .claude ] && [ \"$PWD\" != / ]; do cd ..; done; if [ -d .claude ]; then echo \"$PWD/.claude\"; fi)\"; if [ -n \"$CLAUDE_DIR\" ]; then \"$CLAUDE_DIR/hooks/validation_post_tool_wrapper.sh\"; fi'"
           }
         ]
       }

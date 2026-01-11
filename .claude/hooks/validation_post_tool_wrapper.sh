@@ -1,12 +1,10 @@
 #!/bin/bash
-# Find the project root by looking for .claude directory
-PROJECT_ROOT=$(find . -name ".claude" -type d 2>/dev/null | head -1 | xargs dirname 2>/dev/null)
-if [ -z "$PROJECT_ROOT" ]; then
-  PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
-fi
-if [ -z "$PROJECT_ROOT" ]; then
-  PROJECT_ROOT=$(pwd)
-fi
+# Get the directory where this script is located (.claude/hooks)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# .claude directory is parent of hooks
+CLAUDE_DIR="$(dirname "$SCRIPT_DIR")"
+# Project root is parent of .claude
+PROJECT_ROOT="$(dirname "$CLAUDE_DIR")"
 
 # Change to project root and run the script
 cd "$PROJECT_ROOT" && python3 .claude/hooks/validation_post_tool.py
