@@ -27,25 +27,25 @@ Next Action: /startnewsprint "feature description"
 **Loop Resilience**: Prevents 70% of execution failures through structured completion validation
 
 ## Permissive Mode Options
-**Trusted Development Mode**: Reduce approval prompts for routine operations
+**Professional Development Mode**: Streamline sprint workflow with intelligent approvals
+
 ```
---permissive         Auto-approve safe operations (cat, ls, git status, etc.)
---somewhatpermissive Auto-approve safe operations (same as --permissive)
+/implement --permissive    # Resume sprint work with reduced approval prompts
+/implement --permissive    # Continue active sprint with auto-approved safe operations
 ```
 
-**Safe Operations** (auto-approved in permissive mode):
-- File reading: `cat`, `head`, `tail`, `grep`
-- Directory navigation: `ls`, `pwd`, `cd`, `find`
-- Git operations: `git status`, `git log`, `git diff`, `git show`
-- System info: `which`, `type`, `file`, `stat`
-- Safe file ops: `mkdir`, `touch`, `cp`, `mv` (within project)
+**Auto-Approved Operations** (no user interruption):
+- Development servers: `npm run dev`, `yarn dev`, `python manage.py runserver`
+- File operations: `cat`, `ls`, `grep`, `find`, `mkdir`, `cp`, `mv`
+- Git read-only: `git status`, `git log`, `git diff`, `git show`
+- System monitoring: `ps`, `top`, `df`, `du`
+- Build tools: `npm run build`, `make`, `gcc --version`
 
-**Always Blocked** (even in permissive mode):
-- File deletion: `rm`, `rmdir`, destructive operations
-- System damage: `format`, `fdisk`, shutdown commands
-- Network uploads: `scp`, `wget --upload-file`
-- Database damage: `drop table`, `truncate`, destructive SQL
-- Git force: `git push --force`, `git reset --hard`
+**Still Requires Approval**:
+- Destructive operations: `rm`, `drop table`, `git push --force`
+- Network uploads: `scp`, `rsync`, destructive `curl`/`wget`
+- System changes: `shutdown`, `format`, `fdisk`
+- Security-sensitive: `.env` modifications, credential access
 
 **Iteration Management**:
 ```json

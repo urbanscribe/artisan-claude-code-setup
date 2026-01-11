@@ -923,13 +923,37 @@ Ready to continue building? Your sprint context is fully intact.
 
             # Define safe operations (allowed in permissive mode without prompting)
             safe_operations = [
+                # File system navigation and reading
                 'cat', 'ls', 'pwd', 'cd', 'echo', 'which', 'type', 'whoami',
                 'head', 'tail', 'grep', 'find', 'wc', 'sort', 'uniq', 'diff',
+                'file', 'stat', 'du', 'df',
+
+                # Development server operations
+                'npm run dev', 'npm start', 'npm run build', 'npm run test',
+                'yarn dev', 'yarn start', 'yarn build', 'yarn test',
+                'python manage.py runserver', 'python -m flask run',
+                'rails server', 'rails s',
+
+                # Process monitoring
+                'ps', 'top', 'htop', 'pgrep', 'pkill',
+
+                # Git operations (read-only)
                 'git status', 'git log', 'git show', 'git diff', 'git branch', 'git rev-parse',
+                'git remote -v', 'git config --list',
+
+                # Package management info
                 'npm list', 'npm info', 'node --version', 'npm --version',
                 'python --version', 'python3 --version', 'pip list', 'pip show',
+                'ruby --version', 'gem list',
+
+                # File operations (safe)
                 'mkdir', 'touch', 'cp', 'mv', 'chmod', 'chown',
-                'file', 'stat', 'du', 'df', 'ps', 'top', 'htop'
+
+                # Network testing (safe)
+                'curl --version', 'wget --version', 'ping -c 1',
+
+                # Build tools
+                'make --version', 'cmake --version', 'gcc --version'
             ]
 
             # Check for approved tools
