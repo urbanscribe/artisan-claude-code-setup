@@ -665,30 +665,37 @@ class SafetyValidationHook:
             if not active_sprint:
                 return {'allowed': True, 'reason': 'No active sprint - promise enforcement skipped'}
 
-            # Check iteration limits (adaptive based on sprint progress)
+            # Intelligent Progress Monitoring (replaces hard iteration limits)
             current_iteration = active_sprint.get('iteration', 0)
+            assessment_checkpoints = [10, 25, 40, 60]  # Smart assessment triggers
 
-            # For well-advanced sprints (>5 iterations), allow up to 50 iterations
-            # For new sprints, use more conservative 25 iteration limit
-            if current_iteration > 5:
-                max_iterations = active_sprint.get('max_iterations', 50)
-            else:
-                max_iterations = active_sprint.get('max_iterations', 25)
+            # Check for assessment checkpoints
+            if current_iteration in assessment_checkpoints:
+                # Trigger deep self-assessment
+                if '--assessment-complete' not in command_input:
+                    return {
+                        'allowed': False,
+                        'reason': f'🧠 DEEP SELF-ASSESSMENT REQUIRED: Iteration {current_iteration} reached - comprehensive progress analysis needed.',
+                        'severity': 'medium',
+                        'suggestion': 'Run /deepselfassessment to evaluate progress, detect regressions, and get detailed path correction guidance.',
+                        'assessment_checkpoint': current_iteration
+                    }
 
+            # Legacy escalation support (for backward compatibility)
+            max_iterations = active_sprint.get('max_iterations', 100)  # Very high default
             if current_iteration >= max_iterations:
-                # Check for human escalation override in command
                 if '--escalate-iterations' in command_input:
                     return {
                         'allowed': True,
-                        'reason': 'Human escalation approved - iteration limit override granted',
-                        'warning': f'Iteration {current_iteration}/{max_iterations} - proceeding with human override'
+                        'reason': 'Legacy escalation approved - proceeding with manual override',
+                        'warning': f'Iteration {current_iteration} - using legacy escalation (consider /deepselfassessment for better analysis)'
                     }
 
                 return {
                     'allowed': False,
-                    'reason': f'🚫 EXECUTION BLOCKED: Maximum iterations ({max_iterations}) reached for current sprint phase. Use --escalate-iterations to continue or complete sprint with /endsprint.',
+                    'reason': f'🚫 LEGACY LIMIT EXCEEDED: Maximum iterations ({max_iterations}) reached. Use --escalate-iterations to override or run /deepselfassessment for intelligent analysis.',
                     'severity': 'high',
-                    'suggestion': 'Well-advanced sprints can continue beyond initial limits. Use --escalate-iterations or end sprint with /endsprint'
+                    'suggestion': 'Modern approach: Use /deepselfassessment for progress analysis instead of hard limits'
                 }
 
             # Validate promise tags in recent context (this would be enhanced with conversation context)
