@@ -71,7 +71,7 @@ if [ "$RESTORE_MODE" = true ]; then
     log_info "🔄 EXECUTING RESTORATION PROTOCOL"
 
     # Step 0: Check for PROJECT_REGISTRY.json
-    if [ -f "$CC_DESTINATION/PROJECT_REGISTRY.json" ]; then
+    if [ -f "$CC_DESTINATION/.claude/PROJECT_REGISTRY.json" ]; then
         log_success "PROJECT_REGISTRY.json found - initiating registry-priority recovery"
 
         # Read registry to understand system state
@@ -248,62 +248,26 @@ else
     exit 1
 fi
 
-# Step 12: Create required directories
-log_info "Step 12: Creating work directories..."
-mkdir -p "$CC_DESTINATION/documentation/main"
-mkdir -p "$CC_DESTINATION/documentation/plans"
-mkdir -p "$CC_DESTINATION/tests/poc_scripts"
-mkdir -p "$CC_DESTINATION/temp/claudecode"
-log_success "Work directories created (documentation/main, documentation/plans, tests/poc_scripts, temp/claudecode)"
-
-# Step 13: Initialize Professional OS state
-log_info "Step 13: Initializing Professional OS state..."
+# Step 12: Initialize Professional OS state in .claude folder
+log_info "Step 12: Initializing Professional OS state..."
 if [ -f "$SETUP_DIR/PROJECT_REGISTRY.json" ]; then
-    cp "$SETUP_DIR/PROJECT_REGISTRY.json" "$CC_DESTINATION/PROJECT_REGISTRY.json"
-    log_success "Professional OS state initialized"
+    cp "$SETUP_DIR/PROJECT_REGISTRY.json" "$CC_DESTINATION/.claude/PROJECT_REGISTRY.json"
+    log_success "Professional OS state initialized in .claude/"
 else
     log_error "PROJECT_REGISTRY.json template not found"
     exit 1
 fi
 
-# Step 14: Create architectural template
-log_info "Step 9: Creating architectural documentation template..."
-if [ ! -f "$CC_DESTINATION/documentation/main/proposedarchitecture.md" ]; then
-    cat > "$CC_DESTINATION/documentation/main/proposedarchitecture.md" << 'EOF'
-# Proposed Architecture
-
-## Overview
-This document describes the established architectural patterns and decisions for this project.
-All new features must align with these patterns.
-
-## Core Principles
-- [Add your core architectural principles here]
-
-## Technology Stack
-- [Document your chosen technologies and frameworks]
-
-## Data Architecture
-- [Describe database design, models, relationships]
-
-## API Design
-- [Document API patterns, endpoints, conventions]
-
-## Code Organization
-- [Describe folder structure, naming conventions]
-
-## Deployment & Infrastructure
-- [Document deployment patterns, environments]
-
-## Security Considerations
-- [Document security patterns and requirements]
-
----
-*This document should be updated whenever new architectural patterns are established.*
-EOF
-    log_success "Architectural template created (proposedarchitecture.md)"
+# Step 13: Initialize Professional OS state
+log_info "Step 13: Initializing Professional OS state..."
+if [ -f "$SETUP_DIR/PROJECT_REGISTRY.json" ]; then
+    cp "$SETUP_DIR/PROJECT_REGISTRY.json" "$CC_DESTINATION/.claude/PROJECT_REGISTRY.json"
+    log_success "Professional OS state initialized in .claude/"
 else
-    log_info "Architectural document already exists, skipping template creation"
+    log_error "PROJECT_REGISTRY.json template not found"
+    exit 1
 fi
+
 
 # Step 14: Set permissions
 log_info "Step 10: Setting proper permissions..."
@@ -316,10 +280,9 @@ TOTAL_FILES=$(find "$CC_DESTINATION/.claude/" -type f | wc -l)
 # Check for rules directory structure and professional OS components
 RULES_DIRS=$(find "$CC_DESTINATION/.claude/" -name "rules" -type d | wc -l)
 REPAIR_LOCK_EXISTS=$(test -f "$CC_DESTINATION/.claude/repair_lock.json" && echo 1 || echo 0)
-PROJECT_REGISTRY_EXISTS=$(test -f "$CC_DESTINATION/PROJECT_REGISTRY.json" && echo 1 || echo 0)
-SPRINT_DIR_EXISTS=$(test -d "$CC_DESTINATION/temp/claudecode" && echo 1 || echo 0)
+PROJECT_REGISTRY_EXISTS=$(test -f "$CC_DESTINATION/.claude/PROJECT_REGISTRY.json" && echo 1 || echo 0)
 
-if [ "$TOTAL_FILES" -ge 13 ] && [ "$RULES_DIRS" -ge 1 ] && [ "$REPAIR_LOCK_EXISTS" -eq 1 ] && [ "$PROJECT_REGISTRY_EXISTS" -eq 1 ] && [ "$SPRINT_DIR_EXISTS" -eq 1 ]; then
+if [ "$TOTAL_FILES" -ge 13 ] && [ "$RULES_DIRS" -ge 1 ] && [ "$REPAIR_LOCK_EXISTS" -eq 1 ] && [ "$PROJECT_REGISTRY_EXISTS" -eq 1 ]; then
     log_success "Setup complete! $TOTAL_FILES files installed with rules system, repair lock, and Professional OS."
 else
     log_warning "Setup completed but some components missing (files: $TOTAL_FILES, rules dirs: $RULES_DIRS, repair lock: $REPAIR_LOCK_EXISTS). Please check manually."
@@ -332,7 +295,7 @@ echo ""
 echo -e "${BLUE}What you can do now:${NC}"
 echo "  1. Go to your project: cd $CC_DESTINATION"
 echo "  2. Start Claude: claude"
-echo "  3. Try your first feature: /implement \"add a simple game\""
+echo "  3. Establish project foundation: /startprojectplanning"
 echo ""
 echo -e "${BLUE}Your AI team is ready! 🤖${NC}"
 echo ""
