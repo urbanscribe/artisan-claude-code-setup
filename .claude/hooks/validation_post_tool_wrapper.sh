@@ -6,5 +6,5 @@ CLAUDE_DIR="$(dirname "$SCRIPT_DIR")"
 # Project root is parent of .claude
 PROJECT_ROOT="$(dirname "$CLAUDE_DIR")"
 
-# Change to project root and run the script
-cd "$PROJECT_ROOT" && python3 .claude/hooks/validation_post_tool.py
+# Change to project root and run the script, passing stdin through
+cd "$PROJECT_ROOT" && python3 .claude/hooks/validation_post_tool.py < /dev/stdin
