@@ -1,6 +1,32 @@
-# Artisan's Claude Code Operating System
+# Artisan's Claude Code Operating System 🤖✨
 
-# Artisan's Claude Code Operating System
+**By [Artisan](https://www.weareartisan.com) - Professional AI-Assisted Development**
+
+## 🎯 The Ralph Wiggum Revolution (With a Twist)
+
+**This isn't your typical "AI coding assistant."**
+
+We've taken the brilliant Ralph Wiggum iterative development approach and **supercharged it with preparation**. Before the coding loop begins, we spend significant time on **project definition, scoping, architecture, research, tech stack decisions, and key rules** - because we believe these foundations are critical for successful development.
+
+Think of it as: **"Measure twice, cut once"** meets **"Perfect is the enemy of good enough"**. We do the heavy lifting upfront so Ralph Wiggum can focus on perfection in the execution loop.
+
+*Sorry about the novel-length README - we've packed a lot of professional development wisdom in here! 📚*
+
+## 📋 Table of Contents
+
+- [🚀 Quick Start: Get Started in 5 Minutes](#-quick-start-get-started-in-5-minutes)
+- [📋 What You Get: 20 AI Specialists + Professional Workflow](#-what-you-get-20-ai-specialists--professional-workflow)
+- [🏗️ Artisan's Operating System Overview](#️-artisansas-operating-system-overview)
+- [📋 Commands Reference](#-commands-reference)
+- [🏃 Project Journeys - Complete User Experiences](#-project-journeys---complete-user-experiences)
+- [🤖 Skills Reference](#-skills-reference)
+- [🔄 Workflow Diagrams](#-workflow-diagrams)
+- [🛡️ Quality Gates & Blocking Mechanisms](#️-quality-gates--blocking-mechanisms)
+- [📊 State Management](#-state-management)
+- [🔧 Setup & Deployment](#-setup--deployment)
+- [🚨 Troubleshooting Guide](#-troubleshooting-guide)
+- [💡 Best Practices & Tips](#-best-practices--tips)
+- [🎯 Conclusion](#-conclusion)
 
 ## 🎯 What This Is
 
@@ -1386,7 +1412,7 @@ your_project/
 - `documentation/plans/` (created during sprint planning)
 - `temp/` (temporary artifacts during development)
 
-**But these are created by you through the professional workflow, not by the setup script.**
+**These are created by you through the professional workflow, not by the setup script.**
 
 ## How to Use It
 
@@ -2059,13 +2085,13 @@ export CC_DESTINATION=/path/to/your/project
 
 **What the script does automatically:**
 - ✅ Copies CLAUDE.md to your project
-- ✅ Creates all `.claude/` folders
-- ✅ Copies 12 AI specialist skills
+- ✅ Creates clean `.claude/` folder structure
+- ✅ Copies 20 AI specialist skills
 - ✅ Copies 7 main rules + 16 sub-rules
 - ✅ Copies safety programs (hooks)
-- ✅ Copies special commands
-- ✅ Sets up security settings
-- ✅ Creates work directories
+- ✅ Copies 23 professional commands
+- ✅ Sets up security settings with proper hook format
+- ✅ Initializes PROJECT_REGISTRY.json in `.claude/`
 - ✅ Sets proper permissions
 - ✅ Verifies everything worked
 
@@ -2210,7 +2236,7 @@ ls -la
 ls -la .claude/
 # Expected: PROJECT_REGISTRY.json, settings.json, repair_lock.json, rules/, skills/, commands/, hooks/
 
-# Count Claude Code files (should show 72+ files)
+# Count Claude Code files (should show 73+ files)
 find .claude/ -type f | wc -l
 
 # Verify key files exist
@@ -2251,10 +2277,10 @@ claude
 ### Deployment Checklist
 - [ ] Set `CC_DESTINATION` environment variable to target project directory
 - [ ] Execute `./scripts/setup.sh` and verify successful completion
-- [ ] Verify all 46 files installed correctly
+- [ ] Verify all 73+ files installed correctly in .claude/
 - [ ] Test Claude Code initialization: `claude`
 - [ ] Verify `.claude/` directory structure with all subdirectories
-- [ ] Confirm architectural documentation created in `documentation/main/`
+- [ ] Confirm `.claude/` contains all required files (PROJECT_REGISTRY.json, settings.json, etc.)
 - [ ] Validate repair_lock.json properly initialized
 - [ ] Test safety hooks are executable and functional
 
@@ -2285,8 +2311,8 @@ mv .claude .claude.backup.$(date +%Y%m%d_%H%M%S)
 # Restore previous CLAUDE.md if needed
 git checkout HEAD~1 -- CLAUDE.md
 
-# Clean test artifacts
-rm -rf temp/ logs/ documentation/plans/*
+# Clean any workflow-created artifacts (if they exist)
+rm -rf temp/ logs/ documentation/
 ```
 
 ## Your First Test - Quick Checklist
@@ -2306,13 +2332,55 @@ rm -rf temp/ logs/ documentation/plans/*
 - [ ] Try: `/startprojectplanning` (establish foundation first)
 
 **Both Methods - Verify Everything Works:**
-- [ ] You can see `documentation/main/`, `documentation/plans/`, and `tests/poc_scripts/` folders
-- [ ] Check that `documentation/main/proposedarchitecture.md` was created
+- [ ] Claude Code starts without settings errors
+- [ ] `/startprojectplanning` command works (creates documentation structure)
 - [ ] Watch how Claude asks for approvals at each step
-- [ ] Notice how Claude references your architectural documents
-- [ ] Test `/collect-knowledge` if you have existing docs
-- [ ] Try `/debug-issue` and `/test-plan` commands
+- [ ] Test `/projectstatus` to see system state
+- [ ] Try other commands like `/listsprints` and `/test-plan`
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help:
+
+### Ways to Contribute
+- 🐛 **Bug Reports**: Found an issue? [Open an issue](https://github.com/urbanscribe/artisan-claude-code-setup/issues) with detailed steps to reproduce
+- 💡 **Feature Requests**: Have ideas for improvements? [Start a discussion](https://github.com/urbanscribe/artisan-claude-code-setup/discussions)
+- 📖 **Documentation**: Help improve docs, tutorials, or examples
+- 🧪 **Testing**: Test on different projects and report your experiences
+- 💻 **Code**: Submit pull requests for bug fixes or enhancements
+
+### Development Setup
+```bash
+# Fork the repository
+# Clone your fork
+git clone https://github.com/your-username/artisan-claude-code-setup.git
+cd artisan-claude-code-setup
+
+# Test your changes on a sample project
+export CC_DESTINATION=/tmp/test-project
+./scripts/setup.sh
+```
+
+### Guidelines
+- **Issues**: Use issue templates when available
+- **PRs**: Reference related issues, include tests, update documentation
+- **Code Style**: Follow existing patterns and include clear commit messages
+
+---
+
+## 📞 Support & Community
+
+- **Website**: [www.weareartisan.com](https://www.weareartisan.com)
+- **Issues**: [GitHub Issues](https://github.com/urbanscribe/artisan-claude-code-setup/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/urbanscribe/artisan-claude-code-setup/discussions)
+- **Documentation**: See the comprehensive guide above! 📚
 
 ---
 
 *This setup turns Claude Code into a full development team that works with you. Start with simple features to learn how it works, then use it for bigger projects. Remember: you control all the important decisions - Claude Code is your smart assistant, not your replacement.*
+
+---
+
+**Built with ❤️ by [Artisan](https://www.weareartisan.com)**
