@@ -22,7 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "{{CC_DESTINATION}}/.claude/hooks/safety_pre_tool_wrapper.sh"
+            "command": "$CC_DESTINATION/.claude/hooks/safety_pre_tool_wrapper.sh"
           }
         ]
       }
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "{{CC_DESTINATION}}/.claude/hooks/validation_post_tool_wrapper.sh"
+            "command": "$CC_DESTINATION/.claude/hooks/validation_post_tool_wrapper.sh"
           }
         ]
       }

@@ -212,9 +212,6 @@ fi
 log_info "Step 7: Copying security settings..."
 if [ -f "$SETUP_DIR/.claude/settings.json" ]; then
     cp "$SETUP_DIR/.claude/settings.json" "$CC_DESTINATION/.claude/"
-    # Replace placeholders with actual paths
-    sed -i.bak "s|{{CC_DESTINATION}}|$CC_DESTINATION|g" "$CC_DESTINATION/.claude/settings.json"
-    rm "$CC_DESTINATION/.claude/settings.json.bak" 2>/dev/null || true
     log_success "Security settings copied"
 else
     log_error "settings.json not found"
@@ -297,9 +294,11 @@ log_success "🎉 Claude Code Multi-Agent Setup Complete!"
 echo ""
 echo -e "${BLUE}What you can do now:${NC}"
 echo "  1. Go to your project: cd $CC_DESTINATION"
-echo "  2. Start Claude: claude"
-echo "  3. Establish project foundation: /startprojectplanning"
+echo "  2. Set environment variable: export CC_DESTINATION=$CC_DESTINATION"
+echo "  3. Start Claude: claude"
+echo "  4. Establish project foundation: /startprojectplanning"
 echo ""
 echo -e "${BLUE}Your AI team is ready! 🤖${NC}"
 echo ""
+echo -e "${YELLOW}Note: CC_DESTINATION environment variable must be set for hooks to work properly${NC}"
 echo -e "${YELLOW}Remember: You control all major decisions - Claude Code is your smart assistant!${NC}"
