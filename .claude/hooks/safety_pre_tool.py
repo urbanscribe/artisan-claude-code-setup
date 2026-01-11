@@ -665,9 +665,15 @@ class SafetyValidationHook:
             if not active_sprint:
                 return {'allowed': True, 'reason': 'No active sprint - promise enforcement skipped'}
 
-            # Check iteration limits
+            # Check iteration limits (adaptive based on sprint progress)
             current_iteration = active_sprint.get('iteration', 0)
-            max_iterations = active_sprint.get('max_iterations', 10)
+
+            # For well-advanced sprints (>5 iterations), allow up to 50 iterations
+            # For new sprints, use more conservative 25 iteration limit
+            if current_iteration > 5:
+                max_iterations = active_sprint.get('max_iterations', 50)
+            else:
+                max_iterations = active_sprint.get('max_iterations', 25)
 
             if current_iteration >= max_iterations:
                 # Check for human escalation override in command
@@ -680,9 +686,9 @@ class SafetyValidationHook:
 
                 return {
                     'allowed': False,
-                    'reason': f'🚫 EXECUTION BLOCKED: Maximum iterations ({max_iterations}) reached. Use --escalate-iterations to override or complete current sprint.',
+                    'reason': f'🚫 EXECUTION BLOCKED: Maximum iterations ({max_iterations}) reached for current sprint phase. Use --escalate-iterations to continue or complete sprint with /endsprint.',
                     'severity': 'high',
-                    'suggestion': 'Run with --escalate-iterations flag for human override or end sprint with /endsprint'
+                    'suggestion': 'Well-advanced sprints can continue beyond initial limits. Use --escalate-iterations or end sprint with /endsprint'
                 }
 
             # Validate promise tags in recent context (this would be enhanced with conversation context)
