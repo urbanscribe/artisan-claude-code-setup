@@ -184,12 +184,13 @@ Artisan's Operating System follows strict architectural separation:
 
 ### **Execution Commands**
 
-#### `/implement [optional_sprint_id]`
+#### `/implement [optional_sprint_id] [--permissive]`
 **Purpose**: Professional execution engine with Ralph Wiggum resilience
 **Sprint Validation**: Active sprint and manifesto verification
 **Ralph Wiggum Integration**: Promise tag enforcement (<promise>SANITY_CHECK_PASS</promise>)
-**Iteration Management**: 10-iteration safety bound with human escalation
+**Iteration Management**: Intelligent monitoring with assessment checkpoints (25, 40, 60+)
 **Boundary Enforcement**: Operations restricted to manifesto scope
+**Permissive Mode**: `--permissive` auto-approves safe operations (npm run dev, git status, etc.)
 **Output**: Complete feature implementation with quality validation
 
 ### **Sprint Management Commands**
@@ -510,6 +511,18 @@ Promise Tags → Enforcement → Loop Control
 **Mechanism**: Hook validation of <promise>SANITY_CHECK_PASS</promise>
 **Resolution**: Generate proper completion markers
 **Purpose**: Prevents 70% of execution loop failures
+
+### **Intelligent Progress Monitoring**
+**Trigger**: Automatic checkpoints at iterations 10, 25, 40, 60+
+**Mechanism**: `/deepselfassessment` command for progress analysis
+**Features**: Regression detection, completion % tracking, path correction guidance
+**Purpose**: Replaces hard limits with intelligent human-in-the-loop decision making
+
+### **Permissive Mode**
+**Usage**: `/implement --permissive` for trusted development sessions
+**Auto-Approved**: Safe operations (npm run dev, git status, file reading, etc.)
+**Still Protected**: Destructive operations require approval
+**Purpose**: Reduces interruptions for routine development work
 
 ### **Workflow Sequence Enforcement**
 **Trigger**: Out-of-order command execution
