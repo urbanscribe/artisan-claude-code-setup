@@ -22,7 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"$(dirname \"$(find . -name '.claude' -type d 2>/dev/null | head -1)\")\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null || pwd && python3 .claude/hooks/safety_pre_tool.py"
+            "command": ".claude/hooks/safety_pre_tool_wrapper.sh"
           }
         ]
       }
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"$(dirname \"$(find . -name '.claude' -type d 2>/dev/null | head -1)\")\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null || pwd && python3 .claude/hooks/validation_post_tool.py"
+            "command": ".claude/hooks/validation_post_tool_wrapper.sh"
           }
         ]
       }
