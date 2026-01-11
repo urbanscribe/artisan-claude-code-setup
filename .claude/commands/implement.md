@@ -23,8 +23,29 @@ Next Action: /startnewsprint "feature description"
 ## Ralph Wiggum Loop Resilience
 **Promise Tag Enforcement**: Require `<promise>SANITY_CHECK_PASS</promise>` as exit condition
 **Hook Integration**: safety_pre_tool.py intercepts outputs and validates promise tags before loop exit
-**Max Iterations**: Default 10 iterations with human escalation override for complex features
+**Intelligent Monitoring**: Assessment checkpoints at 10, 25, 40, 60+ iterations with progress analysis
 **Loop Resilience**: Prevents 70% of execution failures through structured completion validation
+
+## Permissive Mode Options
+**Trusted Development Mode**: Reduce approval prompts for routine operations
+```
+--permissive         Auto-approve safe operations (cat, ls, git status, etc.)
+--somewhatpermissive Auto-approve safe operations (same as --permissive)
+```
+
+**Safe Operations** (auto-approved in permissive mode):
+- File reading: `cat`, `head`, `tail`, `grep`
+- Directory navigation: `ls`, `pwd`, `cd`, `find`
+- Git operations: `git status`, `git log`, `git diff`, `git show`
+- System info: `which`, `type`, `file`, `stat`
+- Safe file ops: `mkdir`, `touch`, `cp`, `mv` (within project)
+
+**Always Blocked** (even in permissive mode):
+- File deletion: `rm`, `rmdir`, destructive operations
+- System damage: `format`, `fdisk`, shutdown commands
+- Network uploads: `scp`, `wget --upload-file`
+- Database damage: `drop table`, `truncate`, destructive SQL
+- Git force: `git push --force`, `git reset --hard`
 
 **Iteration Management**:
 ```json

@@ -89,7 +89,7 @@ class SafetyValidationHook:
                 }
             }
 
-    def validate_tool_use(self, tool_input: Dict[str, Any]) -> Dict[str, Any]:
+    def validate_tool_use(self, tool_input: Dict[str, Any], permissive_mode: bool = False) -> Dict[str, Any]:
         """
         Validate a tool use request before execution.
         Enforces comprehensive professional workflow discipline.
@@ -898,7 +898,7 @@ Ready to continue building? Your sprint context is fully intact.
         except Exception as e:
             return {'allowed': True, 'reason': f'Boundary enforcement failed: {str(e)} - operations allowed (fail-safe)'}
 
-    def _check_tool_permissions(self, tool_input: Dict[str, Any]) -> Dict[str, Any]:
+    def _check_tool_permissions(self, tool_input: Dict[str, Any], permissive_mode: bool = False) -> Dict[str, Any]:
         """TOOL PERMISSION FILTERING: Allow only professional OS approved operations."""
 
         try:
@@ -911,10 +911,25 @@ Ready to continue building? Your sprint context is fully intact.
                 'edit', 'run'  # Standard Claude Code tools
             ]
 
-            # Define restricted operations that require professional context
-            restricted_operations = [
-                'git add', 'git commit', 'git push', 'git merge', 'git rebase',
-                'db_init', 'drop table', 'truncate table', 'delete from *'
+            # Define always dangerous operations (never allowed)
+            always_dangerous = [
+                'rm -rf', 'rm -r', 'rmdir', 'del', 'delete', 'unlink',
+                'format', 'fdisk', 'mkfs', 'dd if=', 'shutdown', 'reboot',
+                'wget', 'curl.*--upload', 'scp', 'rsync',
+                'git push.*--force', 'git reset.*--hard',
+                'drop database', 'drop table', 'truncate table', 'delete from',
+                'update.*set.*=', 'insert into', 'alter table'
+            ]
+
+            # Define safe operations (allowed in permissive mode without prompting)
+            safe_operations = [
+                'cat', 'ls', 'pwd', 'cd', 'echo', 'which', 'type', 'whoami',
+                'head', 'tail', 'grep', 'find', 'wc', 'sort', 'uniq', 'diff',
+                'git status', 'git log', 'git show', 'git diff', 'git branch', 'git rev-parse',
+                'npm list', 'npm info', 'node --version', 'npm --version',
+                'python --version', 'python3 --version', 'pip list', 'pip show',
+                'mkdir', 'touch', 'cp', 'mv', 'chmod', 'chown',
+                'file', 'stat', 'du', 'df', 'ps', 'top', 'htop'
             ]
 
             # Check for approved tools
@@ -926,19 +941,38 @@ Ready to continue building? Your sprint context is fully intact.
                     'guidance': 'Use only approved tools within the professional operating system'
                 }
 
-            # Check for restricted operations in commands
             command_lower = command_input.lower()
-            for restricted in restricted_operations:
-                if restricted in command_lower:
+
+            # Always block dangerous operations
+            for dangerous in always_dangerous:
+                if dangerous in command_lower:
                     return {
                         'allowed': False,
-                        'reason': f'🚫 RESTRICTED OPERATION: {restricted} not allowed in professional OS',
+                        'reason': f'🚫 ALWAYS DANGEROUS: {dangerous} operations permanently blocked for security',
                         'severity': 'critical',
-                        'guidance': 'Professional OS prevents destructive operations'
+                        'guidance': 'This operation poses unacceptable security risks'
                     }
 
-            # Allow approved operations
-            return {'allowed': True, 'reason': 'Tool permission validation passed'}
+            # In permissive mode, auto-allow safe operations
+            if permissive_mode:
+                for safe in safe_operations:
+                    if safe in command_lower:
+                        return {
+                            'allowed': True,
+                            'reason': f'✅ SAFE OPERATION: {safe} auto-approved in permissive mode',
+                            'permissive_mode': True,
+                            'auto_approved': True
+                        }
+
+            # Default behavior: require approval for non-safe operations
+            return {
+                'allowed': False,
+                'reason': f'🔐 PERMISSION REQUIRED: Operation requires user approval. Use --permissive or --somewhatpermissive for trusted development.',
+                'severity': 'medium',
+                'guidance': 'Review the operation and approve if it aligns with development goals',
+                'permissive_available': True,
+                'requires_approval': True
+            }
 
         except Exception as e:
             return {'allowed': True, 'reason': f'Tool permission check failed: {str(e)} - operations allowed (fail-safe)'}
@@ -947,22 +981,25 @@ Ready to continue building? Your sprint context is fully intact.
 def main():
     """Main entry point for the hook."""
     """Main entry point for the hook."""
-    try:
-        # Read input from stdin (provided by Claude Code)
-        input_data = json.load(sys.stdin)
+        try:
+            # Read input from stdin (provided by Claude Code)
+            input_data = json.load(sys.stdin)
 
-        # Validate the tool use
-        hook = SafetyValidationHook()
-        result = hook.validate_tool_use(input_data)
+            # Check for permissive mode in command input
+            command_input = str(input_data.get('input', {}).get('message', ''))
 
-        # Output result
-        print(json.dumps(result))
+            # Validate the tool use
+            hook = SafetyValidationHook()
+            result = hook.validate_tool_use(input_data, permissive_mode='--permissive' in command_input or '--somewhatpermissive' in command_input)
 
-        # Exit with appropriate code
-        if result.get('allowed', True):
-            sys.exit(0)  # Allow the tool execution
-        else:
-            sys.exit(1)  # Block the tool execution
+            # Output result
+            print(json.dumps(result))
+
+            # Exit with appropriate code
+            if result.get('allowed', True):
+                sys.exit(0)  # Allow the tool execution
+            else:
+                sys.exit(1)  # Block the tool execution
 
     except Exception as e:
         # On error, block execution and log
