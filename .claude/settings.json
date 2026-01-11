@@ -18,7 +18,9 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": {
+          "tools": ["BashTool"]
+        },
         "hooks": [
           {
             "type": "command",
@@ -29,8 +31,15 @@
     ],
     "PostToolUse": [
       {
-        "type": "command",
-        "command": "python3 .claude/hooks/validation_post_tool.py"
+        "matcher": {
+          "tools": ["*"]
+        },
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/validation_post_tool.py"
+          }
+        ]
       }
     ]
   }
