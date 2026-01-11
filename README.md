@@ -94,11 +94,11 @@ claude
 
 ### 🚀 Professional Development Commands
 - **`/implement [--permissive]`** - Build complete features with full AI team coordination
-- **`/deepselfassessment`** - Intelligent sprint progress analysis & intervention
 - **`/startprojectplanning`** - Guided project foundation establishment
 - **`/startsprintplanning`** - 5-phase planning with 10 quality gates
 - **`/startnewsprint [name]`** - Create execution boundaries with manifestos
 - **`/projectstatus`** - Real-time project and sprint visibility
+- **`/deepselfassessment`** - Intelligent sprint progress analysis & intervention
 - **`/listsprints`** - Sprint management dashboard
 - **`/endsprint`** - Professional completion with cleanup
 - **`/repair "issue"`** - Targeted problem fixing

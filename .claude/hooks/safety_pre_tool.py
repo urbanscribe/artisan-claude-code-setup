@@ -1004,8 +1004,7 @@ Ready to continue building? Your sprint context is fully intact.
 
 def main():
     """Main entry point for the hook."""
-    """Main entry point for the hook."""
-        try:
+    try:
             # Read input from stdin (provided by Claude Code)
             input_data = json.load(sys.stdin)
 
