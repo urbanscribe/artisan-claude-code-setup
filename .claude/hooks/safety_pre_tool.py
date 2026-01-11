@@ -12,12 +12,39 @@ from typing import Dict, Any, List
 from pathlib import Path
 from datetime import datetime
 
+def find_project_root() -> Path:
+    """
+    Find the project root by searching up the directory tree for .claude folder.
+    This handles cases where Claude Code runs hooks from subdirectories.
+    """
+    current = Path.cwd()
+    # Search up to 10 levels up to find .claude directory
+    for _ in range(10):
+        if (current / '.claude').exists():
+            return current
+        if current.parent == current:  # Reached filesystem root
+            break
+        current = current.parent
+
+    # Fallback: assume we're in the project root or nearby
+    # Try to find .claude relative to script location
+    script_dir = Path(__file__).parent.parent.parent  # Go up from hooks/ to project root
+    if (script_dir / '.claude').exists():
+        return script_dir
+
+    # Last resort: use current directory
+    return Path.cwd()
+
 class SafetyValidationHook:
     """Hook for validating tool usage before execution."""
 
     def __init__(self):
+        # Find project root dynamically
+        self.project_root = find_project_root()
+        self.claude_dir = self.project_root / '.claude'
+
         # Load configuration
-        config_path = Path(__file__).parent.parent / 'policy.yaml'
+        config_path = self.claude_dir / 'policy.yaml'
         if config_path.exists():
             import yaml
             with open(config_path, 'r') as f:
@@ -324,7 +351,7 @@ class SafetyValidationHook:
 
         try:
             # Load PROJECT_REGISTRY.json from .claude folder
-            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = self.claude_dir / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 # No registry file - allow operation (fail-safe)
                 return {'allowed': True, 'reason': 'No project registry file found'}
@@ -392,7 +419,7 @@ class SafetyValidationHook:
     def _validate_foundation_gate(self, tool_input: Dict[str, Any]) -> Dict[str, Any]:
         """Validate foundation gate compliance for professional OS."""
         # Foundation Gate Enforcement
-        registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
+        registry_path = self.claude_dir / 'PROJECT_REGISTRY.json'
         if registry_path.exists():
             with open(registry_path, 'r') as f:
                 registry = json.load(f)
@@ -420,7 +447,7 @@ class SafetyValidationHook:
 
         try:
             # Load project registry
-            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = self.claude_dir / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 return {'allowed': True, 'reason': 'No project registry - execution allowed'}
 
@@ -472,7 +499,7 @@ class SafetyValidationHook:
 
         try:
             # Load PROJECT_REGISTRY.json
-            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = self.claude_dir / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 # No registry - block all development operations
                 return {
@@ -548,7 +575,7 @@ class SafetyValidationHook:
 
         try:
             # Load PROJECT_REGISTRY.json
-            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = self.claude_dir / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 # Allow operations if no registry (fail-safe for non-sprint environments)
                 return {'allowed': True, 'reason': 'No project registry - operations allowed'}
@@ -627,7 +654,7 @@ class SafetyValidationHook:
                 return {'allowed': True, 'reason': 'Not in execution loop - promise tags not required'}
 
             # Load PROJECT_REGISTRY.json to check execution context
-            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = self.claude_dir / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 return {'allowed': True, 'reason': 'No registry - promise enforcement skipped'}
 
@@ -674,7 +701,7 @@ class SafetyValidationHook:
 
         try:
             # Load PROJECT_REGISTRY.json for workflow state
-            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = self.claude_dir / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 return {'allowed': True, 'reason': 'No project registry - workflow enforcement bypassed'}
 
@@ -735,7 +762,7 @@ class SafetyValidationHook:
                 return {'allowed': True, 'reason': 'Not a sprint creation operation'}
 
             # Load registry and check planning status
-            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = self.claude_dir / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 return {'allowed': False, 'reason': 'No project registry found for planning validation'}
 
@@ -775,7 +802,7 @@ class SafetyValidationHook:
                 return {'allowed': True, 'reason': 'Not a file operation - boundary check skipped'}
 
             # Load registry for boundary validation
-            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = self.claude_dir / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 return {'allowed': True, 'reason': 'No registry - boundary enforcement bypassed'}
 
