@@ -1,46 +1,89 @@
 # Artisan's Claude Code Operating System
 
-## 🤖 What Is Artisan's Claude Code Operating System?
+# Artisan's Claude Code Operating System
 
-Artisan's Claude Code Operating System transforms Claude Code from a basic AI coding assistant into a **comprehensive professional development environment** that enforces structured project foundation, sprint lifecycle management, and enterprise-grade quality controls.
+## 🎯 What This Is
 
-Instead of casual "jump right in" development, you get **18 specialized AI professionals** working together in a sophisticated **Global Context, Local Execution** model with **professional discipline enforcement**.
+**Artisan's Claude Code Operating System** transforms Claude Code from a basic AI coding assistant into a **comprehensive professional development environment** that enforces structured project foundation, sprint lifecycle management, and enterprise-grade quality controls.
 
-## 🚀 What This Setup Creates
+Instead of casual "jump right in" development, you get **20 specialized AI professionals** working together in a sophisticated **Global Context, Local Execution** model with **professional discipline enforcement**.
 
-**This setup establishes Artisan's Operating System that prevents the #1 cause of project failure through:**
+## 🚀 Quick Start: Get Started in 5 Minutes
 
-### **Professional Project Foundation**
-- **`/startprojectplanning`**: Guided project initialization with stakeholder interviews
-- **Quality Gates**: No development until comprehensive foundation established
-- **Structured Setup**: Vision, goals, architecture, and roadmap creation
+### Prerequisites
+- **Claude Code installed** ([Installation guide](https://docs.anthropic.com/claude/docs/claude-code))
+- **Terminal/command prompt access**
+- **Empty or existing project directory**
 
-### **Complete Sprint Operating System**
-- **`/startsprintplanning`**: 5-phase planning with 10 quality gates
-- **`/startnewsprint [name]`**: Create sprint with optional name and execution boundaries
-- **`/implement [sprint_id]`**: Ralph Wiggum execution on active or specified sprint
-- **`/endsprint`**: Professional completion with cleanup and documentation
-- **`/listsprints`**: Sprint dashboard with activation controls and status management
-- **`/projectstatus`**: Comprehensive project visibility and guidance
+### Step 1: Clone This Repository
+```bash
+# Download the setup files (replace 'my-project' with your project name)
+git clone https://github.com/urbanscribe/artisan-claude-code-setup.git my-project-setup
+cd my-project-setup
+```
 
-### **Enterprise-Grade Resilience**
-- **`/restoreralphwiggam`**: Intelligent recovery from CLAUDE.md overwrites
-- **`./setup.sh --restore`**: Out-of-band recovery preserving registry priority
-- **Stateful Enforcement**: PROJECT_REGISTRY.json maintains professional integrity
-- **Recovery Confidence Levels**: FULL/PARTIAL/MINIMAL restoration capabilities
+### Step 2: Set Your Project Location
+```bash
+# Tell the setup where to install (use your actual project path)
+export CC_DESTINATION=/path/to/your/project
 
-### **18 Specialized AI Professionals**
-1. **foundation-specialist**: Project foundation establishment
-2. **sprint-planning-specialist**: Multi-phase planning orchestration
-3. **recovery-specialist**: System disruption restoration
-4. **cleanup-specialist**: Orphaned code detection and management
-5. **discipline-enforcer**: Professional workflow enforcement
-6. **planning-qa-specialist**: 10-gate quality assurance execution
-7. **project-status-analyst**: Comprehensive dashboard generation
-8. **user-guidance-specialist**: Contextual workflow assistance
-9-18. **Core Development Skills**: coder, tester, evaluator, architect, etc.
+# Example: If your project is in ~/my-app
+export CC_DESTINATION=~/my-app
+```
 
-**One command and your AI team executes complete professional workflows from foundation to production!**
+### Step 3: Run Setup
+```bash
+# This installs everything automatically
+./scripts/setup.sh
+```
+
+### Step 4: Start Using Your AI Team
+```bash
+# Go to your project
+cd "$CC_DESTINATION"
+
+# Start Claude Code
+claude
+
+# Try your first feature
+/implement "build a user login system"
+```
+
+**That's it!** 🎉 You now have a professional AI development team ready to work with you.
+
+**After setup, your project will contain only:**
+- `CLAUDE.md` - Global context and invariants (in project root)
+- `.claude/` - Complete AI system (all internal files contained here)
+
+**No other folders or files are created in your project root!** 🧹
+
+---
+
+## 📋 What You Get: 20 AI Specialists + Professional Workflow
+
+### 🤖 Your AI Development Team
+- **20 Specialized AI Professionals** (foundation, planning, coding, testing, review, recovery, etc.)
+- **Enterprise-Grade Quality Controls** (confidence scoring, architectural validation, security checks)
+- **Professional Workflow Enforcement** (structured development, human approval gates, sprint management)
+
+### 🚀 Professional Development Commands
+- **`/implement "feature"`** - Build complete features with full AI team coordination
+- **`/startprojectplanning`** - Guided project foundation establishment
+- **`/startsprintplanning`** - 5-phase planning with 10 quality gates
+- **`/startnewsprint [name]`** - Create execution boundaries with manifestos
+- **`/projectstatus`** - Real-time project and sprint visibility
+- **`/listsprints`** - Sprint management dashboard
+- **`/endsprint`** - Professional completion with cleanup
+- **`/repair "issue"`** - Targeted problem fixing
+- **`/restoreralphwiggam`** - Intelligent system recovery
+
+### 🛡️ Enterprise-Grade Features
+- **Stateful Security**: PROJECT_REGISTRY.json maintains integrity across sessions
+- **Worktree Isolation**: Prevents cross-project contamination
+- **Ralph Wiggum Loops**: Automated iterative perfection (promise-based execution)
+- **Human Approval Gates**: You control all major architectural decisions
+- **Context Pruning**: Memory management prevents confusion between phases
+- **Recovery Systems**: Multiple levels of system restoration
 
 ---
 
@@ -691,121 +734,9 @@ Artisan's Claude Code Operating System transforms AI-assisted development from c
 
 ---
 
-## ✅ BEFORE YOU START
 
-### 1. Install Claude Code
 
-You need Claude Code installed first. It's separate from regular Claude AI.
 
-```bash
-# Install Claude Code
-curl -fsSL https://claude.ai/install.sh | bash
-
-# Verify it works
-claude --help
-```
-
-**Need help?** Visit [Claude Code documentation](https://docs.anthropic.com/claude/docs/claude-code) for detailed installation instructions.
-
-### 2. Choose Your Project
-
-**New Project?** Start with an empty directory
-**Existing Project?** Use your current project directory
-
-Both work perfectly with this setup!
-
----
-
-## 📥 QUICK START: Get Your AI Team Running in 5 Minutes
-
-### Step 1: Clone This Repository
-```bash
-# Clone the setup repository (you can rename it if you want)
-git clone <repository-url> claude-code-setup
-cd claude-code-setup
-```
-
-### Step 2: Tell Us Where Your Project Is
-```bash
-# Set this to the folder where you want to use Claude Code
-# This is your actual project directory (existing or new)
-export CC_DESTINATION=/path/to/your/actual/project
-
-# Example: If your project is in ~/my-app
-export CC_DESTINATION=~/my-app
-```
-
-### Step 3: Run Setup
-```bash
-# Run the setup script from within this cloned repository
-./scripts/setup.sh
-```
-
-**That's it!** Your AI team is now ready in your project directory.
-
-### Step 4: Start Using Your AI Team
-```bash
-# Go to your project directory
-cd "$CC_DESTINATION"
-
-# Start Claude Code
-claude
-
-# Create your first sprint
-/implement "build a user login system"
-```
-
----
-
-## 🤖 INTERACTIVE SETUP (Guided Installation)
-
-**Want the setup to ask you questions and customize for your project?**
-
-```bash
-# From within the cloned repository
-./scripts/setup-interactive.sh
-```
-
-**What the script will ask you:**
-- **Project type**: "Are you setting up for a NEW project or EXISTING project?"
-- **Project location**: "What is the full path to your project directory?"
-- **Existing docs**: "Does your project have existing documentation? (Y/n)"
-- **Documentation path**: "Where is your documentation folder? [docs]"
-- **Tech stack**: "What is your primary tech stack? [Python]"
-- **Git usage**: "Is this project using Git? (Y/n)"
-- **Worktree isolation**: "Do you want worktree isolation? (Y/n)"
-- **Debug mode**: "Enable debug mode? (y/N)"
-- **Enterprise features**: "Enable enterprise security features? (Y/n)"
-- **Audit logging**: "Enable audit logging? (Y/n)"
-
-**Your responses guide the customization:**
-- **New vs Existing**: Determines if docs folder is created or integrated
-- **Project path**: Where the AI team files get installed
-- **Tech stack**: Influences default configurations
-- **Security options**: Enables enterprise-grade safety features
-
-**Takes about 3-5 minutes** with questions and customization.
-
----
-
-## 🚀 AUTOMATED SETUP (Quick & Simple)
-
-**Want it done in 30 seconds with no questions?**
-
-```bash
-# From within the cloned repository
-export CC_DESTINATION=/path/to/your/project  # Set your project path
-./scripts/setup.sh
-```
-
-**What happens automatically:**
-- ✅ Copies CLAUDE.md to your project
-- ✅ Creates `.claude/` directories and files
-- ✅ Sets up 12 AI specialists and rules system
-- ✅ Configures security and permissions
-- ✅ Initializes sprint infrastructure
-
----
 
 ## 🏗️ THREE-TIER RULES SYSTEM
 
@@ -870,163 +801,7 @@ Your AI team operates within a sophisticated hierarchical rules system that ensu
 
 ---
 
-## 🎯 CHOOSE YOUR SETUP METHOD
 
-**Two ways to get started - pick what works best for you:**
-
-### 🤖 OPTION 1: INTERACTIVE SETUP (Recommended for beginners)
-**Guided setup that asks questions and customizes for your project**
-
-```bash
-./scripts/setup-interactive.sh
-```
-
-**Best for:**
-- First-time users
-- Complex projects with existing documentation
-- Teams that want personalized guidance
-
-**Takes:** 3-5 minutes with questions
-
-### 🚀 OPTION 2: AUTOMATED SETUP (Quick & simple)
-**One-command installation with no questions**
-
-```bash
-export CC_DESTINATION=/path/to/your/project
-./scripts/setup.sh
-```
-
-**Best for:**
-- Experienced users
-- CI/CD automation
-- Simple projects
-
-**Takes:** 30 seconds
-
----
-
-## 📋 DETAILED SETUP BY PROJECT TYPE
-
-### IF YOU ARE STARTING A BRAND NEW PROJECT
-
-**Perfect! This setup will create your entire project structure and initialize all architectural documentation.**
-
-#### Step-by-Step New Project Setup
-
-1. **Clone the Repository**
-   ```bash
-   git clone <repository-url> claude-code-setup
-   cd claude-code-setup
-   ```
-
-2. **Create Your Project Directory**
-   ```bash
-   # Create your actual project folder (outside this setup repo)
-   mkdir ~/my-new-project
-   cd ~/my-new-project
-   git init  # Initialize as git repository
-   ```
-
-3. **Run Setup from the Cloned Repository**
-   ```bash
-   # Go back to the setup repository
-   cd ~/claude-code-setup
-
-   # Set destination to your new project
-   export CC_DESTINATION=~/my-new-project
-
-   # Run the setup
-   ./scripts/setup.sh
-   ```
-
-4. **Initialize Project Architecture**
-   ```bash
-   # Go to your project
-   cd ~/my-new-project
-
-   # Start Claude Code
-   claude
-
-   # Initialize your project architecture
-   /implement "Initialize project architecture for a web application"
-   ```
-
-5. **Complete Initial Setup**
-   - Follow the approval prompts (APPROVE_PLAN, etc.)
-   - Use `/clear` when instructed for memory management
-   - The system will create your architectural foundation
-
-**Result**: Complete project with AI team, architectural docs, and development environment ready.
-
----
-
-### IF YOU ARE ADDING THIS SETUP TO AN EXISTING PROJECT
-
-**Great! This setup will integrate with your existing code and documentation.**
-
-#### Step-by-Step Existing Project Integration
-
-1. **Clone the Setup Repository**
-   ```bash
-   git clone <repository-url> claude-code-setup
-   cd claude-code-setup
-   ```
-
-2. **Navigate to Your Existing Project**
-   ```bash
-   # Go to your actual project (keep setup repo separate)
-   cd /path/to/your/existing/project
-   # Make sure you're in a git repository
-   git status  # Verify git is initialized
-   ```
-
-3. **Prepare Your Documentation (Optional)**
-   If you have existing architectural docs, copy them to the expected location:
-   ```bash
-   # Create the documentation structure
-   mkdir -p documentation/main
-
-   # Copy your existing docs (if any)
-   cp your-existing-architecture.md documentation/main/proposedarchitecture.md
-   cp your-existing-api-docs.md documentation/main/
-   # Add any other architectural documents
-   ```
-
-4. **Run Setup from the Cloned Repository**
-   ```bash
-   # Go back to the setup repository
-   cd ~/claude-code-setup
-
-   # Set destination to your existing project
-   export CC_DESTINATION=/path/to/your/existing/project
-
-   # Run the setup (it will preserve your existing files)
-   ./scripts/setup.sh
-   ```
-
-5. **Knowledge Collection & Integration**
-   ```bash
-   # Go to your project
-   cd /path/to/your/existing/project
-
-   # Start Claude Code
-   claude
-
-   # Use the knowledge collection command to ingest your existing docs
-   /collect-knowledge "Integrate existing project documentation and codebase"
-
-   # Or use implement for a comprehensive integration
-   /implement "Integrate Claude Code team with existing API project"
-   ```
-
-6. **Verify Integration**
-   - Check that your existing docs are referenced in plans
-   - Confirm the AI team understands your architecture
-   - Test with a small feature addition
-
-**Result**: Your existing project enhanced with AI team capabilities while preserving all current work.
-
----
 
 ## 🏃‍♂️ WORKING WITH SPRINTS: Complete Development Lifecycle
 
@@ -1431,26 +1206,6 @@ documentation/main/
 
 ---
 
-## QUICK START CHECKLIST
-
-**For New Projects:**
-- [ ] Create project directory and `git init`
-- [ ] Set `CC_DESTINATION` and run setup script
-- [ ] Run `/implement "Initialize project architecture"`
-- [ ] Follow approval prompts and memory management
-
-**For Existing Projects:**
-- [ ] Navigate to existing project
-- [ ] Copy architectural docs to `documentation/main/`
-- [ ] Set `CC_DESTINATION` and run setup script
-- [ ] Run `/collect-knowledge` then `/implement` for integration
-
-**Both Scenarios:**
-- [ ] Verify `.claude/` directory structure created
-- [ ] Test basic command: `/implement "create a simple hello world page"`
-- [ ] Learn the approval flow and `/clear` usage
-
-**💡 MUCH EASIER**: Skip all manual steps! Use the automated setup script instead (see the 🚀 AUTOMATED SETUP section below).
 
 ## Step-by-Step Setup (Copy These Files)
 
@@ -1607,45 +1362,31 @@ documentation/main/
 - **Maintenance**: Clear documentation of why decisions were made
 - **Evolution**: Architecture grows organically with your project
 
-## File Structure After Setup
+## Clean Project Structure After Setup
+
+**Your project root stays clean! Only these files exist after setup:**
 
 ```
 your_project/
-├── CLAUDE.md                         # ⚠️  CRITICAL: Auto-loaded context
-├── .claude/
-│   ├── CLAUDE.md                     # Core invariants + operational procedures
-│   ├── rules/                        # Task-specific rules (7 main + 16 sub-rules)
-│   ├── skills/                       # AI specialist skills (12 comprehensive skills)
-│   │   ├── planner.md                # Planning specialist (YAML frontmatter format)
-│   │   ├── coder.md                  # Implementation specialist
-│   │   ├── tester.md                 # Testing specialist
-│   │   ├── evaluator.md              # Evaluation specialist
-│   │   ├── sanity-checker.md         # Reality validation specialist
-│   │   ├── architect-reviewer.md     # Architecture consistency specialist
-│   │   ├── qa-enforcer.md            # Choice elimination specialist
-│   │   ├── ui-validator.md           # UI testing automation specialist
-│   │   ├── dependency-researcher.md  # External dependency specialist
-│   │   ├── self-assessor.md          # Quality self-assessment specialist
-│   │   ├── skeptic.md                # Assumption challenger and validator
-│   │   └── async-optimizer.md        # Performance optimization specialist
-│   ├── hooks/
-│   │   ├── safety_pre_tool.py        # Safety validation hook
-│   │   └── validation_post_tool.py   # Minimal feedback hook
-│   ├── commands/
-│   │   ├── implement.md              # Main workflow command (Ralph Wiggum gates)
-│   │   ├── test-plan.md              # Plan validation command
-│   │   ├── repair.md                 # Repair workflow command
-│   │   └── debug-issue.md            # Debugging command
-│   ├── repair_lock.json              # HARD repair scope lock
-│   └── settings.json                 # Claude Code configuration (hooks + permissions)
-├── documentation/
-│   ├── main/                         # Architectural source of truth
-│   └── plans/                        # Generated plan files
-├── logs/                             # Enterprise audit logging
-├── temp/                             # Temporary files
-└── tests/
-    └── poc_scripts/                  # Proof of concept test scripts
+├── CLAUDE.md                    # ⚠️ Global context (auto-loaded by Claude)
+└── .claude/                     # 🏗️ Complete AI system (all internals here)
+    ├── PROJECT_REGISTRY.json    # 📊 Professional OS state management
+    ├── settings.json            # ⚙️ Claude Code configuration
+    ├── repair_lock.json         # 🔒 HARD repair scope enforcement
+    ├── rules/                   # 📋 Rules system (7 main + 16 sub-rules)
+    ├── skills/                  # 🤖 20 AI specialists
+    ├── commands/                # 🎮 23 professional commands
+    └── hooks/                   # 🛡️ Safety & validation systems
 ```
+
+**No clutter in your project root!** 🎉
+
+**The AI team creates user content through workflow:**
+- `documentation/main/` (created by `/startprojectplanning`)
+- `documentation/plans/` (created during sprint planning)
+- `temp/` (temporary artifacts during development)
+
+**But these are created by you through the professional workflow, not by the setup script.**
 
 ## How to Use It
 
@@ -2352,7 +2093,7 @@ export CC_DESTINATION=.
 What you can do now:
   1. Go to your project: cd /home/user/my-awesome-app
   2. Start Claude: claude
-  3. Try your first feature: /implement "add a simple game"
+  3. Establish project foundation: /startprojectplanning
 ```
 
 **That's it!** The script handles all setup steps for you.
@@ -2456,19 +2197,28 @@ claude /implement "build user interface"
 
 If you prefer to do it step by step, follow the detailed instructions above.
 
-## Check Your Setup Worked
+## Verify Your Clean Setup
 
-After setup (manual or automatic), verify everything is ready:
+After setup, your project root should contain **only** these items:
 
 ```bash
-# Count the files you copied (should show about 46 files)
+# Check project root (should be clean!)
+ls -la
+# Expected: CLAUDE.md, .claude/, .git/ (if initialized), .DS_Store (macOS)
+
+# Verify .claude/ structure
+ls -la .claude/
+# Expected: PROJECT_REGISTRY.json, settings.json, repair_lock.json, rules/, skills/, commands/, hooks/
+
+# Count Claude Code files (should show 72+ files)
 find .claude/ -type f | wc -l
 
-# Check the key files are there
-ls -la .claude/settings.json
-ls -la .claude/subagents/
-ls -la .claude/hooks/
-ls -la .claude/commands/
+# Verify key files exist
+ls -la .claude/PROJECT_REGISTRY.json  # Professional OS state
+ls -la .claude/settings.json          # Claude Code configuration
+ls -la .claude/skills/                # 20 AI specialists
+ls -la .claude/commands/              # 23 professional commands
+ls -la .claude/hooks/                 # Safety systems
 ```
 
 ### If `/implement` Doesn't Work
@@ -2546,14 +2296,14 @@ rm -rf temp/ logs/ documentation/plans/*
 - [ ] Ran `./scripts/setup.sh` successfully
 - [ ] Claude Code works when you type `claude`
 - [ ] You can see the `.claude/` folder with all subfolders
-- [ ] Try: `/implement "make a simple calculator web page"`
+- [ ] Try: `/startprojectplanning` (establish foundation first)
 
 **For Interactive Setup:**
 - [ ] Ran `./scripts/setup-interactive.sh` and answered questions
 - [ ] Setup completed with your custom configuration
 - [ ] Claude Code works when you type `claude`
 - [ ] Check that documentation was set up according to your answers
-- [ ] Try: `/implement "make a simple calculator web page"`
+- [ ] Try: `/startprojectplanning` (establish foundation first)
 
 **Both Methods - Verify Everything Works:**
 - [ ] You can see `documentation/main/`, `documentation/plans/`, and `tests/poc_scripts/` folders

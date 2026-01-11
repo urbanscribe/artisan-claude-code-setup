@@ -323,8 +323,8 @@ class SafetyValidationHook:
         """STATEFUL FAIL-CLOSED ENFORCEMENT: Check file operation against active sprint boundaries."""
 
         try:
-            # Load PROJECT_REGISTRY.json from project root
-            registry_path = Path(__file__).parent.parent.parent / 'PROJECT_REGISTRY.json'
+            # Load PROJECT_REGISTRY.json from .claude folder
+            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 # No registry file - allow operation (fail-safe)
                 return {'allowed': True, 'reason': 'No project registry file found'}
@@ -392,7 +392,7 @@ class SafetyValidationHook:
     def _validate_foundation_gate(self, tool_input: Dict[str, Any]) -> Dict[str, Any]:
         """Validate foundation gate compliance for professional OS."""
         # Foundation Gate Enforcement
-        registry_path = Path(__file__).parent.parent.parent / 'PROJECT_REGISTRY.json'
+        registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
         if registry_path.exists():
             with open(registry_path, 'r') as f:
                 registry = json.load(f)
@@ -420,7 +420,7 @@ class SafetyValidationHook:
 
         try:
             # Load project registry
-            registry_path = Path(__file__).parent.parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 return {'allowed': True, 'reason': 'No project registry - execution allowed'}
 
@@ -472,7 +472,7 @@ class SafetyValidationHook:
 
         try:
             # Load PROJECT_REGISTRY.json
-            registry_path = Path(__file__).parent.parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 # No registry - block all development operations
                 return {
@@ -548,7 +548,7 @@ class SafetyValidationHook:
 
         try:
             # Load PROJECT_REGISTRY.json
-            registry_path = Path(__file__).parent.parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 # Allow operations if no registry (fail-safe for non-sprint environments)
                 return {'allowed': True, 'reason': 'No project registry - operations allowed'}
@@ -627,7 +627,7 @@ class SafetyValidationHook:
                 return {'allowed': True, 'reason': 'Not in execution loop - promise tags not required'}
 
             # Load PROJECT_REGISTRY.json to check execution context
-            registry_path = Path(__file__).parent.parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 return {'allowed': True, 'reason': 'No registry - promise enforcement skipped'}
 
@@ -674,7 +674,7 @@ class SafetyValidationHook:
 
         try:
             # Load PROJECT_REGISTRY.json for workflow state
-            registry_path = Path(__file__).parent.parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 return {'allowed': True, 'reason': 'No project registry - workflow enforcement bypassed'}
 
@@ -735,7 +735,7 @@ class SafetyValidationHook:
                 return {'allowed': True, 'reason': 'Not a sprint creation operation'}
 
             # Load registry and check planning status
-            registry_path = Path(__file__).parent.parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 return {'allowed': False, 'reason': 'No project registry found for planning validation'}
 
@@ -775,7 +775,7 @@ class SafetyValidationHook:
                 return {'allowed': True, 'reason': 'Not a file operation - boundary check skipped'}
 
             # Load registry for boundary validation
-            registry_path = Path(__file__).parent.parent.parent / 'PROJECT_REGISTRY.json'
+            registry_path = Path(__file__).parent.parent / 'PROJECT_REGISTRY.json'
             if not registry_path.exists():
                 return {'allowed': True, 'reason': 'No registry - boundary enforcement bypassed'}
 
