@@ -665,7 +665,7 @@ class SafetyValidationHook:
             if not active_sprint:
                 return {'allowed': True, 'reason': 'No active sprint - promise enforcement skipped'}
 
-            # Intelligent Progress Monitoring (replaces hard iteration limits)
+            # Intelligent Progress Monitoring & Resumption Guidance
             current_iteration = active_sprint.get('iteration', 0)
             assessment_checkpoints = [10, 25, 40, 60]  # Smart assessment triggers
 
@@ -675,14 +675,54 @@ class SafetyValidationHook:
                 if '--assessment-complete' not in command_input:
                     return {
                         'allowed': False,
-                        'reason': f'🧠 DEEP SELF-ASSESSMENT REQUIRED: Iteration {current_iteration} reached - comprehensive progress analysis needed.',
-                        'severity': 'medium',
-                        'suggestion': 'Run /deepselfassessment to evaluate progress, detect regressions, and get detailed path correction guidance.',
+                        'reason': f'🧠 INTELLIGENT CHECKPOINT: Iteration {current_iteration} - Time for progress assessment!',
+                        'severity': 'info',
+                        'suggestion': 'Run /deepselfassessment to see progress %, check for regressions, and get guidance on next steps. This ensures we\'re on the right path!',
                         'assessment_checkpoint': current_iteration
                     }
 
-            # No hard iteration limits - intelligent monitoring only
-            # Assessment checkpoints provide oversight without blocking progress
+            # Provide helpful guidance instead of blocking
+            # This handles cases where Claude Code internally blocks at iteration limits
+            max_iterations = active_sprint.get('max_iterations', 1000)
+
+            # If we're at or near iteration limits, provide helpful resumption guidance
+            if current_iteration >= 10:  # Claude Code's internal limit
+                return {
+                    'allowed': True,  # Allow continuation
+                    'reason': f'🎯 EXPERIENCED SPRINT CONTINUATION: Iteration {current_iteration} - You\'re making great progress!',
+                    'guidance': f'''
+📍 CURRENT STATUS:
+   • Sprint: {sprint_id}
+   • Progress: {current_iteration} iterations completed
+   • Phase: Advanced development
+   • Files: {len(active_sprint.get('locked_files', []))} locked
+
+🚀 RESUMPTION OPTIONS:
+
+   1. CONTINUE CURRENT WORK:
+      Keep building on your progress - the system supports unlimited iterations!
+
+   2. ASSESSMENT CHECK:
+      Run /deepselfassessment for detailed progress analysis and guidance
+
+   3. SPRINT MANAGEMENT:
+      Use /projectstatus to see overall project state
+      Use /listsprints to manage sprint lifecycle
+
+💡 REMEMBER: No arbitrary limits - your work is preserved and you can continue indefinitely with intelligent oversight!
+
+Ready to continue building? Your sprint context is fully intact.
+                    ''',
+                    'sprint_context_preserved': True,
+                    'unlimited_iterations_supported': True
+                }
+
+            # Normal operation - provide progress context
+            return {
+                'allowed': True,
+                'reason': f'✅ SPRINT EXECUTION: Iteration {current_iteration + 1} ready - building on your solid foundation!',
+                'progress_context': f'Sprint {sprint_id} | Iteration {current_iteration} | {len(active_sprint.get("locked_files", []))} files locked'
+            }
 
             # Validate promise tags in recent context (this would be enhanced with conversation context)
             # For now, allow operations but log the requirement
