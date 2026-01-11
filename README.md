@@ -71,8 +71,8 @@ cd "$CC_DESTINATION"
 # Start Claude Code
 claude
 
-# Try your first feature
-/implement "build a user login system"
+# Establish project foundation (REQUIRED FIRST STEP)
+/startprojectplanning
 ```
 
 **That's it!** 🎉 You now have a professional AI development team ready to work with you.
@@ -1431,15 +1431,15 @@ You'll see Claude Code start up and show a prompt where you can type commands.
 
 ### Step 2: Choose Your Starting Point
 
-**New Project?** Start with architecture setup:
+**New Project?** Start with foundation establishment:
 ```bash
-/implement "Initialize project architecture for a web application"
+/startprojectplanning
 ```
 
-**Existing Project?** First collect knowledge, then implement:
+**Existing Project?** First collect knowledge, then establish foundation:
 ```bash
 /collect-knowledge "Integrate existing project documentation"
-/implement "Add user authentication to existing app"
+/startprojectplanning
 ```
 
 ### Step 3: The AI Team Workflow
@@ -2143,9 +2143,9 @@ claude --help
 
 **For New Projects:**
 ```bash
-# Initialize project architecture
-/implement "Initialize project architecture for a [describe your app type]"
-# Follow approval prompts (APPROVE_PLAN, etc.)
+# Establish project foundation (REQUIRED FIRST STEP)
+/startprojectplanning
+# Follow the guided foundation establishment process
 ```
 
 **For Existing Projects:**
